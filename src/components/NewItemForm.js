@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 function NewItemForm(props) {
 
   function handleNewItemFormSubmission(event) {
-    event.PreventDefault();
-    props.onNewItemCreation({name: event.target.name.value, description: event.target.description.value, quantity: event.target.quantity.value, id: v4()});
+    event.preventDefault();
+    props.onNewItemCreation({itemName: event.target.itemName.value, description: event.target.description.value, quantity: event.target.quantity.value, id: v4()});
   }
 
   return (
@@ -14,19 +14,19 @@ function NewItemForm(props) {
       <form onSubmit={handleNewItemFormSubmission}>
         <input
           type='text'
-          name='name'
+          name='itemName'
           placeholder='Item name' />
         <br /><br />
-        <textarea
-          name='description'
-          placeholder='Item description' />
-         <br /><br />
         <input
           type='number'
           name='quantity'
           placeholder='Quantity' />
           <br /><br />
-        <button type='submit'>Add Item</button><br /><br />
+        <textarea
+          name='description'
+          placeholder='Item description' />
+          <br /><br />
+        <button type='submit'>Add Item</button>
       </form>
     </React.Fragment>
   );

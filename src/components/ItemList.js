@@ -1,5 +1,5 @@
-import React from "react";
-import Item from "./Item";
+import React from 'react';
+import Item from './Item';
 import PropTypes from 'prop-types';
 
 function ItemList(props) {
@@ -8,7 +8,7 @@ function ItemList(props) {
       <hr />
       {props.itemList.map((item, index) =>
         <Item 
-          name={item.name}
+          itemName={item.itemName}
           description={item.description}
           quantity={item.quantity}
           key={index}
