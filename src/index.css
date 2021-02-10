@@ -5,6 +5,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url(https://images.pond5.com/end-world-climate-change-crisis-footage-050977730_iconl.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover ;
+  color: silver;
   text-align: center;
 }
 

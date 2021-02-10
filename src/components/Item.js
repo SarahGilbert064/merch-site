@@ -13,7 +13,7 @@ function Item(props) {
 Item.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  quantity: PropTypes.int.isRequired
+  quantity: PropTypes.number.isRequired
 };
 
 export default Item;
