@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 function Item(props) {
   return( 
     <React.Fragment>
-      <h3>{props.itemName}</h3>
-      <p>{props.description} - {props.quantity}</p>
+      <div onClick = {() => props.whenItemClicked(props.id)}>
+        <h3>{props.itemName} - {props.quantity}</h3>
+      </div>
     </React.Fragment>
   );
 }
@@ -13,7 +14,9 @@ function Item(props) {
 Item.propTypes = {
   itemName: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired
+  quantity: PropTypes.number.isRequired,
+  id: PropTypes.string,
+  whenItemClicked: PropTypes.func
 };
 
 export default Item;
