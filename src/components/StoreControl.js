@@ -49,13 +49,17 @@ class StoreControl extends React.Component {
     });
   }
 
-  // handleBuyingItem = (quantity) => {
-  //   const newMasterItemList = this.state.masterItemList.filter(item => item.quantity - quantity);
-  //     this.setState({
-  //       masterItemList: newMasterItemList,
-  //       selectedItem: null
-  //     });     
-  // }
+  handleBuyingItem = () => {
+    const selectedItem = this.state.selectedItem; //selects item that is currently selected and viewed in details page
+    const newQuantity = Object.assign({}, selectedItem, {quantity: selectedItem.quantity - 1}); //this targets the selectedItem and it's quantity, and assigns it the new quantity
+    const newItemList = this.state.masterItemList
+      .filter(item => item.id !== this.state.selectedItem.id)
+      .concat(newQuantity); //updates the item list
+    this.setState({
+      masterItemList: newItemList,
+      selectedItem: newQuantity
+    });
+  }  
 
     //buy handle click, trying to minus from item quantity
 

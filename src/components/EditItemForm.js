@@ -9,7 +9,7 @@ function EditItemForm (props) {
     event.preventDefault();
     props.onEditItem({
       itemName: event.target.itemName.value, 
-      quantity: event.target.quantity.value, 
+      quantity: parseInt(event.target.quantity.value), 
       description: event.target.description.value, 
       id: item.id
     });

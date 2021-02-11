@@ -7,7 +7,11 @@ function NewItemForm(props) {
 
   function handleNewItemFormSubmission(event) {
     event.preventDefault();
-    props.onNewItemCreation({itemName: event.target.itemName.value, description: event.target.description.value, quantity: event.target.quantity.value, id: v4()});
+    props.onNewItemCreation({
+      itemName: event.target.itemName.value, 
+      description: event.target.description.value, 
+      quantity: parseInt(event.target.quantity.value), 
+      id: v4()});
   }
 
   return (
