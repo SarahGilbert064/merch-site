@@ -49,6 +49,16 @@ class StoreControl extends React.Component {
     });
   }
 
+  // handleBuyingItem = (quantity) => {
+  //   const newMasterItemList = this.state.masterItemList.filter(item => item.quantity - quantity);
+  //     this.setState({
+  //       masterItemList: newMasterItemList,
+  //       selectedItem: null
+  //     });     
+  // }
+
+    //buy handle click, trying to minus from item quantity
+
   handleClick = () => {
     if(this.state.selectedItem != null) {
       this.setState({
@@ -81,6 +91,7 @@ class StoreControl extends React.Component {
       item = {this.state.selectedItem} 
       onClickingDelete = {this.handleDeletingItem}
       onClickingEdit = {this.handleEditClick}
+      onClickingBuy = {this.handleBuyingItem}
       />
       buttonText = "Return to Item List";
 
