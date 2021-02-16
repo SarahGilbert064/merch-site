@@ -6,7 +6,7 @@ function ItemList(props) {
   return (
     <React.Fragment>
       <hr />
-      {props.itemList.map((item) =>
+      {Object.values(props.itemlist).map((item) =>
         <Item 
           whenItemClicked = { props.onItemSelection }
           itemName={item.itemName}
@@ -21,7 +21,7 @@ function ItemList(props) {
 }
 
 ItemList.propTypes = {
-  itemList: PropTypes.array,
+  itemList: PropTypes.object,
   onItemSelection: PropTypes.func
 };
 

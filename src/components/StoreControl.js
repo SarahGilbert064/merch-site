@@ -3,14 +3,16 @@ import NewItemForm from './NewItemForm';
 import ItemList from './ItemList';
 import ItemDetail from './ItemDetail';
 import EditItemForm from './EditItemForm';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class StoreControl extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       formVisibleOnPage: false,
-      masterItemList: [],
       selectedItem: null,
       editing: false
     };
@@ -21,32 +23,48 @@ class StoreControl extends React.Component {
   }
 
   handleEditingItemInList = (itemToEdit) => {
-    const editedMasterItemList = this.state.masterItemList  
-      .filter(item => item.id !== this.state.selectedItem.id)
-      .concat(itemToEdit);
+    const { dispatch } = this.props;
+    const { id, itemName, description, quantity } = itemToEdit;
+    const action = {
+      type: 'ADD_TICKET',
+      id: id,
+      itemName: itemName,
+      description: description,
+    }
+    dispatch(action);
     this.setState({
-      masterItemList: editedMasterItemList,
-      editing:false,
+      editing: false,
       selectedItem: null
     });
   }
 
+
   handleChangingSelectedItem = (id) => {
-    const selectedItem = this.state.masterItemList.filter(item => item.id === id)[0];
+    const selectedItem = this.props.masterItemList[id];
     this.setState({selectedItem: selectedItem});
   }
 
   handleAddingNewItemToList = (newItem) => {
-    const newMasterItemList = this.state.masterItemList.concat(newItem);
-    this.setState({masterItemList: newMasterItemList, formVisibleOnPage: false });
+    const { dispatch } = this.props;
+    const { id, itemName, description, quantity } = newItem;
+    const action = {
+      type: 'ADD_TICKET',
+      id: id,
+      itemName: itemName,
+      description: description,
+    }
+    dispatch(action);
+    this.setState({formVisibleOnPage: false});
   }
 
   handleDeletingItem = (id) => {
-    const newMasterItemList = this.state.masterItemList.filter(item => item.id !== id);
-    this.setState({
-      masterItemList: newMasterItemList,
-      selectedItem: null
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_TICKET',
+      id: id
+    }
+    dispatch(action);
+    this.setState({selectedItem: null});
   }
 
   handleBuyingItem = () => {
@@ -109,7 +127,7 @@ class StoreControl extends React.Component {
     } else {
       currentlyVisibleState = 
       <ItemList 
-      itemList={this.state.masterItemList}
+      itemList={this.props.masterItemList}
       onItemSelection={this.handleChangingSelectedItem} 
       />;
       buttonText = "Add Item";
@@ -122,7 +140,18 @@ class StoreControl extends React.Component {
       </React.Fragment>
     );
   }
-
 }
+
+StoreControl.propTypes = {
+  masterItemList: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    masterItemList: state
+  }
+}
+
+StoreControl = connect(mapStateToProps)(StoreControl);
 
 export default StoreControl;
